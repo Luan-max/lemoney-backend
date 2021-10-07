@@ -63,6 +63,14 @@ async function routes(fastify, options) {
       reply,
     });
   });
+
+  fastify.delete("/offers/:offerId", async (request, reply) => {
+    middleware(request, reply);
+    await OffersController.delete({
+      req: request,
+      reply,
+    });
+  });
 }
 
 module.exports = routes;

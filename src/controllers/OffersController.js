@@ -21,12 +21,15 @@ exports.create = async ({ req, reply }) => {
 
 exports.update = async ({ req, reply }) => {
   try {
-    const formatOffers = formatOffersFunction({ offer: req.body });
+    const { enabled } = req.body;
 
-    const offer = await Offers.create({
-      ...formatOffers,
-      advertiser: req.advertiserId,
-    });
+    const offer = await Offers.findByIdAndUpdate(
+      req.params.offerId,
+      {
+        enabled,
+      },
+      { new: true }
+    );
 
     reply.code(200).send({
       offer,
@@ -47,7 +50,7 @@ exports.list = async ({ req, reply }) => {
     })
   );
 
-  const ordersEnabled = formatOrders.filter((enabled) => enabled.active);
+  const ordersEnabled = formatOrders.filter((enabled) => enabled.enabled);
 
   return reply
     .code(200)
@@ -70,4 +73,16 @@ exports.getById = async ({ req, reply }) => {
   }
 
   return reply.code(200).send({ Offer: offer });
+};
+
+exports.delete = async ({ req, reply }) => {
+  try {
+    await Offers.findByIdAndRemove(req.params.offerId);
+
+    reply.code(200).send({
+      message: "Offer deleted",
+    });
+  } catch (error) {
+    throw new Error(`Error in delete offer ${error}`);
+  }
 };
