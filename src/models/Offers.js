@@ -11,7 +11,12 @@ const OffersSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  active: {
+  enabled: {
+    type: Boolean,
+    require: true,
+    default: false,
+  },
+  premium: {
     type: Boolean,
     require: true,
     default: false,
