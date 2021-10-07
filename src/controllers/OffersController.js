@@ -29,7 +29,7 @@ exports.update = async ({ req, reply }) => {
     });
 
     reply.code(200).send({
-      offer,
+      message: "Offer updated",
     });
   } catch (error) {
     throw new Error(`Error in update offer ${error}`);
