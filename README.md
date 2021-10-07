@@ -7,9 +7,9 @@
 
 # Iniciar a aplicação
 
-    A aplicação foi desenvolvida através de container para uma administração de processamento melhor. Então para você executar, bastar ter na sua máquina o Docker instalado.
+ - Executar o comando npm install para instalar todas as depedências do projeto.
 
-- Comando para rodar a aplicação: docker-compose up ou docker-compose up -d para rodar em background.
+ - Comando para rodar a aplicação: "npm start" ou se preferir rodar em desenvolvimento "npm run dev".
 
 # Rotas
 
